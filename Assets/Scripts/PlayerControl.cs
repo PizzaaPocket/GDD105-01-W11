@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
 
     private Rigidbody rb;
     private float movementX, movementY;
-    public float speed;
+    public float speed =0;
     private float velocity;
     public float velocityspeed = 2.0f;
     private bool isGrounded;
@@ -39,6 +39,13 @@ public class PlayerControl : MonoBehaviour
 
             rb.AddForce(velocity * velocityspeed, ForceMode.Impulse);
             isGrounded = false;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PickUp"))
+        {
+            other.gameObject.SetActive(false);
         }
     }
 }
